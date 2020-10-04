@@ -4,8 +4,8 @@ package com.sippulse.pet.entity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**Classe DAO para entidade Employee com metodos basicos como construtores, getters e setters;
  * @author Allex Magno
@@ -28,6 +28,9 @@ public class Employee extends AbstractEntity{
 
     @NotBlank
     private String role;
+
+    @ManyToMany(mappedBy = "employees")
+    private List<Pet> pets;
 
     public Employee(){}
 
@@ -68,5 +71,13 @@ public class Employee extends AbstractEntity{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 }

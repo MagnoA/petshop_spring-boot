@@ -3,6 +3,7 @@ package com.sippulse.pet.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import java.util.List;
 
 /**Classe DAO para entidade PET com metodos basicos como construtores, getters e setters;
  * @author Allex Magno
@@ -24,6 +25,12 @@ public class Pet extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENT")
 	private Client client;
+
+	@ManyToMany
+	@JoinTable(name="TB_SCHEDULE",
+			joinColumns = @JoinColumn(name = "PET_ID"),
+			inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+	private List<Employee> employees;
 
 	public Pet(String name, String kind, String breed, Client client) {
 		this.name = name;
@@ -65,5 +72,13 @@ public class Pet extends AbstractEntity {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
 }
