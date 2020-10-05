@@ -1,11 +1,16 @@
 package com.sippulse.pet.service;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sippulse.pet.entity.Client;
+import com.sippulse.pet.entity.Pet;
 import com.sippulse.pet.repository.ClientRepository;
+import com.sippulse.pet.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /** Classe que implementa os Servicos requisitados pelo controller
  * @author Allex Magno
@@ -18,6 +23,9 @@ public class ClientServiceImpl implements ClientService{
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private PetRepository petRepository;
 
     @Override
     public Client addClient(Client client) {
@@ -35,6 +43,12 @@ public class ClientServiceImpl implements ClientService{
     @Override
     public Client showClient(String cpf) {
         return clientRepository.findByCpf(cpf);
+    }
+
+    @Override
+    public List<Pet> showClientPets(String cpf) {
+        Client client = clientRepository.findByCpf(cpf);
+        return petRepository.findByClient(client);
     }
 
     @Override

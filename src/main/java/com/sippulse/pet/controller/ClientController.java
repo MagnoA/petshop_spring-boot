@@ -28,9 +28,15 @@ public class ClientController {
         return new ResponseEntity<>(clientService.showClient(id), HttpStatus.OK);
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "/cpf")
     public ResponseEntity<?> getClientByCpf(@RequestBody Client client){
         return new ResponseEntity<>(clientService.showClient(client.getCpf()), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/cpf/pets")
+    public ResponseEntity<?> getClientPets(@RequestBody Client client){
+        return new ResponseEntity<>(clientService.showClientPets(client.getCpf()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)

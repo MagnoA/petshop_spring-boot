@@ -1,6 +1,8 @@
 package com.sippulse.pet.service;
 
+import com.sippulse.pet.entity.Client;
 import com.sippulse.pet.entity.Pet;
+import com.sippulse.pet.repository.ClientRepository;
 import com.sippulse.pet.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,13 @@ public class PetServiceImpl implements PetService{
     @Autowired
     private PetRepository petRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     @Override
     public Pet addPet(Pet pet) {
+        Client client = clientRepository.findByCpf(pet.getClient().getCpf());
+        pet.setClient(client);
         return petRepository.save(pet);
     }
 
@@ -31,7 +38,7 @@ public class PetServiceImpl implements PetService{
 
     @Override
     public List<Pet> listPetByClient(String cpf) {
-        return petRepository.findByClient(cpf);
+        return null;
     }
 
     @Override

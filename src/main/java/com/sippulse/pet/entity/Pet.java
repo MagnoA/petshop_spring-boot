@@ -1,8 +1,11 @@
 package com.sippulse.pet.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**Classe DAO para entidade PET com metodos basicos como construtores, getters e setters;
@@ -29,7 +32,6 @@ public class Pet extends AbstractEntity {
 	private List<Vet> vets;
 
 	@ManyToOne
-	@JoinColumn(name = "CLIENT_ID")
 	private Client client;
 
 	public Pet(String name, String kind, String breed) {
@@ -71,5 +73,14 @@ public class Pet extends AbstractEntity {
 
 	public void setVets(List<Vet> vets) {
 		this.vets = vets;
+	}
+
+	@JsonManagedReference
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }
