@@ -23,7 +23,7 @@ public class Pet extends AbstractEntity {
 	private String breed;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_CLIENT")
+	@JoinColumn(name = "CLIENT_ID")
 	private Client client;
 
 	@ManyToMany
@@ -32,11 +32,10 @@ public class Pet extends AbstractEntity {
 			inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
 	private List<Employee> employees;
 
-	public Pet(String name, String kind, String breed, Client client) {
+	public Pet(String name, String kind, String breed) {
 		this.name = name;
 		this.kind = kind;
 		this.breed = breed;
-		this.client = client;
 	}
 
 	public Pet() {

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ClientService {
 
     public abstract Client addClient(Client client);
-    public abstract List<Client>  listClient();
+    public abstract List<Client> listClient();
     public abstract Client showClient(Long id);
     public abstract Client showClient(String cpf);
     public abstract Client updateClient(Client client);

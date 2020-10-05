@@ -21,36 +21,30 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public Client addClient(Client client) {
-        return null;
+        return clientRepository.save(client);
     }
 
     @Override
-    public List<Client> listClient() {
-        return null;
-    }
+    public List<Client> listClient() { return clientRepository.findAll(); }
 
     @Override
     public Client showClient(Long id) {
-        return null;
+        return clientRepository.findById(id);
     }
 
     @Override
     public Client showClient(String cpf) {
-        return null;
+        return clientRepository.findByCpf(cpf);
     }
 
     @Override
     public Client updateClient(Client client) {
-        return null;
+        return clientRepository.save(clientRepository.findByCpf(client.getCpf()));
     }
 
     @Override
-    public void deteleClient(Long id) {
-
-    }
+    public void deteleClient(Long id) { clientRepository.delete(id);}
 
     @Override
-    public void deleteClient(String cpf) {
-
-    }
+    public void deleteClient(String cpf) { clientRepository.delete(clientRepository.findByCpf(cpf).getId()); }
 }

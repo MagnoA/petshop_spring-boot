@@ -19,6 +19,8 @@ public class Client extends AbstractEntity{
     private String name;
 
     @NotBlank
+    private String telephone;
+    @NotBlank
     private String address;
 
     @NotBlank
@@ -26,16 +28,16 @@ public class Client extends AbstractEntity{
     private String cpf;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="ID_CLIENT")
+    @JoinColumn(name="CLIENT_ID")
     private List<Pet> pets;
 
     public Client(){}
 
-    public Client(String name, String address, String cpf, List<Pet> pets) {
+    public Client(String name, String address, String telephone, String cpf) {
         this.name = name;
         this.address = address;
+        this.telephone = telephone;
         this.cpf = cpf;
-        this.pets = pets;
     }
 
     public String getName() {
@@ -60,6 +62,14 @@ public class Client extends AbstractEntity{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public List<Pet> getPets() {

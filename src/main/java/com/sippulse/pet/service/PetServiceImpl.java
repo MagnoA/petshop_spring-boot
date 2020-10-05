@@ -7,6 +7,7 @@ import java.util.List;
 public class PetServiceImpl implements PetService{
 // Implementação para os métodos da Interface.
 
+
     @Override
     public Pet addPet(Pet pet) {
         return null;
@@ -19,6 +20,16 @@ public class PetServiceImpl implements PetService{
 
     @Override
     public Pet showPet(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<Pet> listPetByClient(String cpf) {
+        return null;
+    }
+
+    @Override
+    public List<Pet> listPetByEmployee(String email) {
         return null;
     }
 
