@@ -28,22 +28,22 @@ public class PetController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> registerClient(@RequestBody Client client){
+    public ResponseEntity<?> registerPet(@RequestBody Client client){
         return new ResponseEntity<>(petService.addPet(client), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> updateClient(@RequestBody Client client){
+    @RequestMapping(method = RequestMethod.PUT, value = "/client")
+    public ResponseEntity<?> updatePet(@RequestBody Client client){
         return new ResponseEntity<>(petService.updatePet(client),HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    public ResponseEntity<?> updateClient(@RequestBody Pet pet){
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> updatePet(@RequestBody Pet pet){
         return new ResponseEntity<>(petService.updatePet(pet),HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<?> deleteClientById(@PathVariable(value = "id") Long id){
+    public ResponseEntity<?> deletePetById(@PathVariable(value = "id") Long id){
         petService.detelePet(id);
         return new ResponseEntity<>(petService.listPet(), HttpStatus.OK);
     }

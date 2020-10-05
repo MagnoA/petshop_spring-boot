@@ -36,19 +36,13 @@ public class EmployeeController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> updateEmployee(@RequestBody Employee employee){
-        return new ResponseEntity<>(employeeService.updateEmployee(employee),HttpStatus.OK);
+    public ResponseEntity<?> updateEmployeeById(@RequestBody Employee employee){
+        return new ResponseEntity<>(employeeService.updateEmployeeById(employee),HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "id") Long id){
         employeeService.deteleEmployeeById(id);
-        return new ResponseEntity<>(employeeService.listEmployee(), HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteEmployByCpf(@RequestBody Employee employee){
-        employeeService.deleteEmployeeByEmail(employee.getEmail());
         return new ResponseEntity<>(employeeService.listEmployee(), HttpStatus.OK);
     }
 }

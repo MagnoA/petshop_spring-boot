@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Employee extends AbstractEntity{
 
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank

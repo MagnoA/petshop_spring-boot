@@ -1,5 +1,6 @@
 package com.sippulse.pet.service;
 
+import com.sippulse.pet.entity.Client;
 import com.sippulse.pet.entity.Employee;
 import com.sippulse.pet.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,36 +16,46 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee employee) {
-        return null;
+        return employeeRepository.save(employee);
     }
 
     @Override
     public List<Employee> listEmployee() {
-        return null;
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee showEmployee(Long id) {
-        return null;
+        return employeeRepository.findById(id);
     }
 
     @Override
     public Employee showEmployee(String email) {
-        return null;
+        return employeeRepository.findByEmail(email);
     }
 
     @Override
-    public Employee updateEmployee(Employee employee) {
-        return null;
+    public Employee updateEmployeeById(Employee employee) {
+
+        Employee employeeToUpdate = employeeRepository.findById(employee.getId());
+
+        if(!employeeToUpdate.getEmail().equals(employee.getEmail()))
+            employeeToUpdate.setEmail(employee.getEmail());
+
+        if(!employeeToUpdate.getName().equals(employee.getName()))
+            employeeToUpdate.setName(employee.getName());
+
+        if(!employeeToUpdate.getRole().equals(employee.getRole()))
+            employeeToUpdate.setRole(employee.getRole());
+
+        if(!employeeToUpdate.getPassword().equals(employee.getPassword()))
+            employeeToUpdate.setPassword(employee.getPassword());
+
+        return employeeToUpdate;
     }
 
     @Override
     public void deteleEmployeeById(Long id) {
-
-    }
-
-    @Override
-    public void deleteEmployeeByEmail(String email) {
-
+        employeeRepository.delete(id);
     }
 }
