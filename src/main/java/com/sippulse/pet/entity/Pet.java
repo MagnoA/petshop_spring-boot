@@ -22,15 +22,15 @@ public class Pet extends AbstractEntity {
 	@NotBlank
 	private String breed;
 
-	@ManyToOne
-	@JoinColumn(name = "CLIENT_ID")
-	private Client client;
-
 	@ManyToMany
 	@JoinTable(name="TB_SCHEDULE",
 			joinColumns = @JoinColumn(name = "PET_ID"),
-			inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
-	private List<Employee> employees;
+			inverseJoinColumns = @JoinColumn(name = "VET_ID"))
+	private List<Vet> vets;
+
+	@ManyToOne
+	@JoinColumn(name = "CLIENT_ID")
+	private Client client;
 
 	public Pet(String name, String kind, String breed) {
 		this.name = name;
@@ -65,19 +65,11 @@ public class Pet extends AbstractEntity {
 		this.breed = breed;
 	}
 
-	public Client getClient() {
-		return client;
+	public List<Vet> getVets() {
+		return vets;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setVets(List<Vet> vets) {
+		this.vets = vets;
 	}
 }

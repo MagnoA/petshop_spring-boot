@@ -33,25 +33,25 @@ public class ClientController {
         return new ResponseEntity<>(clientService.showClient(client.getCpf()), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> registerClient(@RequestBody Client client){
         return new ResponseEntity<>(clientService.addClient(client), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateClient(@RequestBody Client client){
         return new ResponseEntity<>(clientService.updateClient(client),HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<?> deleteClientById(@PathVariable(value = "id") Long id){
         clientService.deteleClient(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.listClient(), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/cpf")
+    @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteClientByCpf(@RequestBody Client client){
         clientService.deleteClient(client.getCpf());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(clientService.listClient(), HttpStatus.OK);
     }
 }

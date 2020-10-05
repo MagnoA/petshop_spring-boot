@@ -7,14 +7,14 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import java.util.List;
 
-/**Classe DAO para entidade Employee com metodos basicos como construtores, getters e setters;
+/**Classe DAO para entidade Vet com metodos basicos como construtores, getters e setters;
  * @author Allex Magno
  * @version 1.0
  */
 
 @Entity
-@Table(name="tb_employee")
-public class Employee extends AbstractEntity{
+@Table(name="tb_vet")
+public class Vet extends AbstractEntity{
 
     @NotBlank
     private String name;
@@ -29,12 +29,12 @@ public class Employee extends AbstractEntity{
     @NotBlank
     private String role;
 
-    @ManyToMany(mappedBy = "employees")
+    @ManyToMany(mappedBy = "vets", cascade = CascadeType.ALL)
     private List<Pet> pets;
 
-    public Employee(){}
+    public Vet(){}
 
-    public Employee(String name, String email, String password, String role) {
+    public Vet(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;

@@ -20,6 +20,7 @@ public class Client extends AbstractEntity{
 
     @NotBlank
     private String telephone;
+
     @NotBlank
     private String address;
 

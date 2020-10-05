@@ -5,7 +5,7 @@ import com.sippulse.pet.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 
 /** Classe que implementa os Servicos requisitados pelo controller
  * @author Allex Magno
@@ -25,7 +25,7 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public List<Client> listClient() { return clientRepository.findAll(); }
+    public Collection<Client> listClient() { return clientRepository.findAll(); }
 
     @Override
     public Client showClient(Long id) {
@@ -39,7 +39,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public Client updateClient(Client client) {
-        return clientRepository.save(clientRepository.findByCpf(client.getCpf()));
+        return clientRepository.save(client);
     }
 
     @Override
