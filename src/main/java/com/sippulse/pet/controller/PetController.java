@@ -28,11 +28,16 @@ public class PetController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> registerClient(@RequestBody Pet pet){
-        return new ResponseEntity<>(petService.addPet(pet), HttpStatus.OK);
+    public ResponseEntity<?> registerClient(@RequestBody Client client){
+        return new ResponseEntity<>(petService.addPet(client), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> updateClient(@RequestBody Client client){
+        return new ResponseEntity<>(petService.updatePet(client),HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public ResponseEntity<?> updateClient(@RequestBody Pet pet){
         return new ResponseEntity<>(petService.updatePet(pet),HttpStatus.OK);
     }

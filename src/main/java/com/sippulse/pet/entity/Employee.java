@@ -1,20 +1,22 @@
 package com.sippulse.pet.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
 
-/**Classe DAO para entidade Vet com metodos basicos como construtores, getters e setters;
+/**Classe DAO para entidade Employee com metodos basicos como construtores, getters e setters;
  * @author Allex Magno
  * @version 1.0
  */
 
 @Entity
 @Table(name="tb_vet")
-public class Vet extends AbstractEntity{
+public class Employee extends AbstractEntity{
 
     @NotBlank
     private String name;
@@ -29,12 +31,14 @@ public class Vet extends AbstractEntity{
     @NotBlank
     private String role;
 
-    @ManyToMany(mappedBy = "vets", cascade = CascadeType.ALL)
-    private List<Pet> pets;
+    @JsonManagedReference(value = "employee_schedule")
+    @OneToMany
+    @JoinColumn(name = "ID_EMPLOYEE")
+    private List<Schedule> schedule;
 
-    public Vet(){}
+    public Employee(){}
 
-    public Vet(String name, String email, String password, String role) {
+    public Employee(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -73,11 +77,11 @@ public class Vet extends AbstractEntity{
         this.role = role;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public List<Schedule> getSchedule() {
+        return schedule;
     }
 
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 }

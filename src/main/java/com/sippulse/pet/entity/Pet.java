@@ -1,6 +1,5 @@
 package com.sippulse.pet.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
@@ -25,13 +24,14 @@ public class Pet extends AbstractEntity {
 	@NotBlank
 	private String breed;
 
-	@ManyToMany
-	@JoinTable(name="TB_SCHEDULE",
-			joinColumns = @JoinColumn(name = "PET_ID"),
-			inverseJoinColumns = @JoinColumn(name = "VET_ID"))
-	private List<Vet> vets;
+	@JsonManagedReference(value = "pet_schedule")
+	@OneToMany
+	@JoinColumn(name = "ID_PET")
+	private List<Schedule> schedules;
 
+	@JsonBackReference(value = "client_pets")
 	@ManyToOne
+	@JoinColumn(name = "ID_CLIENT", nullable = false)
 	private Client client;
 
 	public Pet(String name, String kind, String breed) {
@@ -67,20 +67,18 @@ public class Pet extends AbstractEntity {
 		this.breed = breed;
 	}
 
-	public List<Vet> getVets() {
-		return vets;
-	}
-
-	public void setVets(List<Vet> vets) {
-		this.vets = vets;
-	}
-
-	@JsonManagedReference
 	public Client getClient() {
 		return client;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
 	}
 }

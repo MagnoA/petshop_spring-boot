@@ -7,6 +7,9 @@ import com.sippulse.pet.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,10 +23,19 @@ public class PetServiceImpl implements PetService{
     private ClientRepository clientRepository;
 
     @Override
-    public Pet addPet(Pet pet) {
-        Client client = clientRepository.findByCpf(pet.getClient().getCpf());
-        pet.setClient(client);
-        return petRepository.save(pet);
+    public List<Pet> addPet(Client client) {
+        Client clientPet = clientRepository.findByCpf(client.getCpf());
+        Iterator<Pet> petIterator = client.getPets().iterator();
+        List<Pet> petList = new ArrayList<>();
+        while (petIterator.hasNext()){
+            Pet pet = petIterator.next();
+            if(petRepository.findByNameAndClient_Id(pet.getName(), clientPet.getId()) != null)
+                pet = petIterator.next();
+            pet.setClient(clientPet);
+            petList.add(pet);
+            petRepository.save(pet);
+        }
+        return petList;
     }
 
     @Override
@@ -42,12 +54,43 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public List<Pet> listPetByVet(String email) {
-        return petRepository.findByVets(email);
+    public List<Pet> listPetByEmployee(String email) {
+        return null;
+    }
+
+    @Override
+    public List<Pet> updatePet(Client client) {
+        Iterator<Pet> petIterator = client.getPets().iterator();
+        List<Pet> petList = new ArrayList<>();
+        while (petIterator.hasNext()){
+            Pet pet = petIterator.next();
+            Pet petToUpdate = petRepository.findByNameAndClient_Id(
+                    pet.getName(),
+                    clientRepository.findByCpf(client.getCpf()).getId());
+
+            if (petToUpdate == null)
+                    return null;
+            if (!petToUpdate.getName().equals(pet.getName()))
+                petToUpdate.setName(pet.getName());
+
+            if (!petToUpdate.getBreed().equals(pet.getBreed()))
+                petToUpdate.setBreed(pet.getBreed());
+
+            if (!petToUpdate.getKind().equals(pet.getKind()))
+                petToUpdate.setKind(pet.getKind());
+
+            petList.add(pet);
+            petRepository.save(pet);
+        }
+
+
+        return petList;
     }
 
     @Override
     public Pet updatePet(Pet pet) {
+        Client client = petRepository.findById(pet.getId()).getClient();
+        pet.setClient(client);
         return petRepository.save(pet);
     }
 

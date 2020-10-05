@@ -1,10 +1,7 @@
 package com.sippulse.pet.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -32,7 +29,8 @@ public class Client extends AbstractEntity{
     @Column(unique = true)
     private String cpf;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "client_pets")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
     private List<Pet> pets;
 
     public Client(){}
@@ -76,7 +74,6 @@ public class Client extends AbstractEntity{
         this.telephone = telephone;
     }
 
-    @JsonBackReference
     public List<Pet> getPets() {
         return pets;
     }

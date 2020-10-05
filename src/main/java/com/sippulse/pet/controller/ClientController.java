@@ -5,6 +5,7 @@ import com.sippulse.pet.entity.Client;
 import com.sippulse.pet.service.ClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,6 @@ public class ClientController {
     public ResponseEntity<?> getClientById(@PathVariable(value = "id") Long id){
         return new ResponseEntity<>(clientService.showClient(id), HttpStatus.OK);
     }
-
 
     @RequestMapping(method = RequestMethod.GET, value = "/cpf")
     public ResponseEntity<?> getClientByCpf(@RequestBody Client client){
