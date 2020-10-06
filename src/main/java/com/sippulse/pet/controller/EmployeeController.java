@@ -37,7 +37,7 @@ public class EmployeeController {
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeById(@RequestBody Employee employee){
-        return new ResponseEntity<>(employeeService.updateEmployeeById(employee),HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.updateEmployee(employee),HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")

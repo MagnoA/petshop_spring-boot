@@ -10,6 +10,6 @@ public interface EmployeeService {
     public abstract List<Employee> listEmployee();
     public abstract Employee showEmployee(Long id);
     public abstract Employee showEmployee(String email);
-    public abstract Employee updateEmployeeById(Employee employee);
+    public abstract Employee updateEmployee(Employee employee);
     public abstract void deteleEmployeeById(Long id);
 }

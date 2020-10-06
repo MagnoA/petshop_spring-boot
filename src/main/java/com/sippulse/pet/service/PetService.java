@@ -15,5 +15,5 @@ public interface PetService {
     public abstract List<Pet> listPetByEmployee(String email);
     public abstract List<Pet> updatePet(Client client);
     public abstract Pet updatePet(Pet pet);
-    public abstract void detelePet(Long id);
+    public abstract void detelePet(Client client);
 }

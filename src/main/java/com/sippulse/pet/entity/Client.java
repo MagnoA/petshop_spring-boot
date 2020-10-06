@@ -30,7 +30,7 @@ public class Client extends AbstractEntity{
     private String cpf;
 
     @JsonManagedReference(value = "client_pets")
-    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Pet> pets;
 
     public Client(){}

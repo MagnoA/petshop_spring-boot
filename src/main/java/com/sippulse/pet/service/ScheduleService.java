@@ -16,6 +16,6 @@ public interface ScheduleService {
     public abstract List<Pet> listScheduleByDate(Schedule schedule);
     public abstract List<Pet> listScheduleByClient(Client client);
     public abstract List<Pet> listScheduleByEmployee(Employee employee);
-    public abstract List<Schedule> updateSchedule(Employee employee);
-    public abstract void deteleSchedule(Long id);
+    public abstract List<Pet> updateSchedule(Employee employee);
+    public abstract List<Pet> deteleSchedule(Long id);
 }

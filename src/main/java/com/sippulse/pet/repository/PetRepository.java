@@ -2,6 +2,7 @@ package com.sippulse.pet.repository;
 
 import com.sippulse.pet.entity.Client;
 import com.sippulse.pet.entity.Pet;
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.SignatureBaseRSA;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +18,9 @@ public interface PetRepository extends JpaRepository<Pet,Long> {
 
     List<Pet> findByClient(Client client);
 
-    Pet findByNameAndClient_Id(String name, Long clientId);
+    Pet findByIdAndClient_Id(Long idPet, Long idClient);
+
+    Pet findByNameAndClient_Cpf(String name, String cpf);
+
+    Pet deleteByIdAndClient_CpfOrClient_Id(Long idPet, String cpf, Long idClient);
 }

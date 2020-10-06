@@ -29,6 +29,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public Client addClient(Client client) {
+
         return clientRepository.save(client);
     }
 
@@ -54,14 +55,17 @@ public class ClientServiceImpl implements ClientService{
     @Override
     public Client updateClient(Client client) {
         Client clientToUpDate = clientRepository.findByCpf(client.getCpf());
-        if (!clientToUpDate.getAddress().equals(client.getAddress()))
+        if (client.getAddress() != null)
             clientToUpDate.setAddress(client.getAddress());
 
-        if (!clientToUpDate.getName().equals(client.getName()))
+        if (client.getName() != null)
             clientToUpDate.setName(client.getName());
 
-        if (!clientToUpDate.getCpf().equals(client.getCpf()))
+        if (client.getCpf() != null)
             clientToUpDate.setCpf(client.getCpf());
+
+        if(client.getTelephone() != null)
+            clientToUpDate.setTelephone(client.getTelephone());
 
         return clientRepository.save(clientToUpDate);
     }

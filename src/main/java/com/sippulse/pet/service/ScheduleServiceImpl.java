@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -96,9 +95,9 @@ public class ScheduleServiceImpl implements ScheduleService{
     }
 
     @Override
-    public List<Schedule> updateSchedule(Employee employee) {
+    public List<Pet> updateSchedule(Employee employee) {
         Iterator<Schedule> scheduleIterator = employee.getSchedule().iterator();
-        List<Schedule> scheduleList = new ArrayList<>();
+        List<Pet> petList = new ArrayList<>();
         while (scheduleIterator.hasNext()){
             Schedule schedule = scheduleIterator.next();
             Schedule scheduleToUpdate = scheduleRepository.findById(schedule.getId());
@@ -116,14 +115,22 @@ public class ScheduleServiceImpl implements ScheduleService{
                 scheduleToUpdate.setTime(schedule.getTime());
 
             scheduleRepository.save(scheduleToUpdate);
-            scheduleList.add(scheduleToUpdate);
+            petList.add(scheduleToUpdate.getPet());
         }
 
-        return scheduleList;
+        return petList;
     }
 
     @Override
-    public void deteleSchedule(Long id) {
-
+    public List<Pet> deteleSchedule(Long id) {
+        Iterator<Schedule> scheduleEmployeeIterator = employeeRepository
+                .findById(scheduleRepository.findById(id).getEmployee().getId()).getSchedule().iterator();
+        List<Pet> petList = new ArrayList<>();
+        while (scheduleEmployeeIterator.hasNext()) {
+            Schedule schedule = scheduleEmployeeIterator.next();
+            petList.add(schedule.getPet());
+        }
+        scheduleRepository.delete(id);
+        return petList;
     }
 }

@@ -7,10 +7,7 @@ import com.sippulse.pet.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/schedule")
@@ -44,12 +41,10 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleService.updateSchedule(employee), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteScheduleByEmployee(Employee employee){
-        scheduleService.addSchedule(employee);
-        return new ResponseEntity<>(scheduleService.listScheduleByEmployee(employee), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public ResponseEntity<?> deleteScheduleByEmployee(@PathVariable(value = "id") Long id){
+        return new ResponseEntity<>(scheduleService.deteleSchedule(id), HttpStatus.OK);
     }
-
 
 
 }

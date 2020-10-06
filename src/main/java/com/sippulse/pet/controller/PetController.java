@@ -42,9 +42,9 @@ public class PetController {
         return new ResponseEntity<>(petService.updatePet(pet),HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<?> deletePetById(@PathVariable(value = "id") Long id){
-        petService.detelePet(id);
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletePet(@RequestBody Client client){
+        petService.detelePet(client);
         return new ResponseEntity<>(petService.listPet(), HttpStatus.OK);
     }
 }
