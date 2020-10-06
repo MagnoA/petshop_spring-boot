@@ -1,10 +1,17 @@
 # Documentação da API
 
+## Sumário 
+[1 - Consulta de Agendamentos](#topico1) \
+[2 - Gerenciamento de Clientes](#topico2) \
+[3 - Gerenciamento de Pets](#topico3) \
+[4 - Gerenciamento de Funcionários](#topico4) \
+[5 - Gerenciamento de Agenda](#topico5) \
+
 A aplicação Pet Schedule é uma ferramenta de agendamento de consultas em Petshop.
 
 ## Endpoints
 
-### Consulta simples de Agendamentos
+### 1 - Consulta simples de Agendamentos <a name="topico1"></a>
 > As seguintes URIs não necessitam de autenticação.
 
  * ``` /client ``` \
@@ -33,7 +40,7 @@ curl -X GET -H "Content-Type: application/json" http://FQDN_OR_IP[:PORT]/date -d
 ### Consultas e requisições do aplicação.
 > As seguintes URIs necessitam de autenticação
 
-#### Gerenciamento de Clientes
+#### 2 - Gerenciamento de Clientes <a name="topico2"></a>
  * ``` /clients ``` \
 **Metodo:** GET \
 **Descrição:** Consulta todos os clientes. \
@@ -150,7 +157,7 @@ curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN
 
 ```
 
-#### Gerenciamento de Pets
+#### 3 - Gerenciamento de Pets <a name="topico3"></a>
 
  * ``` /pets ``` \
 **Metodo:** GET  \
@@ -261,7 +268,7 @@ curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN
 
 ```
 
-#### Gerenciamento de Funcionários
+#### 4 - Gerenciamento de Funcionários <a name="topico4"></a>
 
 
  * ``` /employees ``` \
@@ -343,7 +350,7 @@ curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN
 ```
 
 
-#### Gerenciamento de Agenda
+#### 5 - Gerenciamento de Agenda <a name="topico5"></a>
 
  * ``` /schedule/vet ``` \
 **Metodo:**  GET \
@@ -420,3 +427,4 @@ scheduleUpdate.json
 curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN_OR_IP[:PORT]/1
 
 ```
+
