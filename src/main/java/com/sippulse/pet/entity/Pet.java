@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**Classe DAO para entidade PET com metodos basicos como construtores, getters e setters;
@@ -27,7 +26,7 @@ public class Pet extends AbstractEntity {
 	@JsonManagedReference(value = "pet_schedule")
 	@OneToMany
 	@JoinColumn(name = "ID_PET")
-	private List<Schedule> schedules;
+	private List<Schedule> schedule;
 
 	@JsonBackReference(value = "client_pets")
 	@ManyToOne
@@ -75,10 +74,10 @@ public class Pet extends AbstractEntity {
 		this.client = client;
 	}
 
-	public List<Schedule> getSchedules() {
-		return schedules;
+	public List<Schedule> getSchedule() {
+		return schedule;
 	}
-	public void setSchedules(List<Schedule> schedules) {
-		this.schedules = schedules;
+	public void setSchedule(List<Schedule> schedules) {
+		this.schedule = schedules;
 	}
 }

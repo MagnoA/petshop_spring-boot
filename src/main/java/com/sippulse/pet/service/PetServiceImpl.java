@@ -79,8 +79,8 @@ public class PetServiceImpl implements PetService{
             if (!petToUpdate.getKind().equals(pet.getKind()))
                 petToUpdate.setKind(pet.getKind());
 
-            petList.add(pet);
-            petRepository.save(pet);
+            petList.add(petToUpdate);
+            petRepository.save(petToUpdate);
         }
 
 

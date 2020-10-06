@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="tb_vet")
+@Table(name="tb_employee")
 public class Employee extends AbstractEntity{
 
     @NotBlank
