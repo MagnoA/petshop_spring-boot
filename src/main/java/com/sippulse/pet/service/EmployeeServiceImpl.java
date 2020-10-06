@@ -5,10 +5,17 @@ import com.sippulse.pet.entity.Schedule;
 import com.sippulse.pet.repository.EmployeeRepository;
 import com.sippulse.pet.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -20,7 +27,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     private ScheduleRepository scheduleRepository;
 
     @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Employee employee = Optional.ofNullable(employeeRepository.findByEmail(email))
+                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+        List<GrantedAuthority> authoritiesListEmployee = AuthorityUtils.createAuthorityList(employee.getRole());
+        return new User(employee.getName(), employee.getPassword(), authoritiesListEmployee);
+    }
+
+    @Override
     public Employee addEmployee(Employee employee) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.save(employee);
     }
 
@@ -53,8 +70,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         if(employee.getRole() != null)
             employeeToUpdate.setRole(employee.getRole());
 
-        if(employee.getPassword() != null)
-            employeeToUpdate.setPassword(employee.getPassword());
+        if(employee.getPassword() != null) {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        }
 
         return employeeRepository.save(employeeToUpdate);
     }
