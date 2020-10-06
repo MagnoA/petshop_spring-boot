@@ -20,7 +20,4 @@ public interface PetRepository extends JpaRepository<Pet,Long> {
 
     Pet findByIdAndClient_Id(Long idPet, Long idClient);
 
-    Pet findByNameAndClient_Cpf(String name, String cpf);
-
-    Pet deleteByIdAndClient_CpfOrClient_Id(Long idPet, String cpf, Long idClient);
 }

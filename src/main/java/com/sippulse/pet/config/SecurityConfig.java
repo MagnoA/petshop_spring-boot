@@ -9,16 +9,26 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+/**
+ * Classe de configuracao do scpring security
+ */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private EmployeeServiceImpl employeeService;
 
+    /**
+     * Configuracao para permitir requisicoes anonimas para o endpoint /client e /date.
+     * As demais requisicoes devem ser autenticadas
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/client", "/date").anonymous()
+                .antMatchers("/", "/client", "/date").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
@@ -29,6 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
+    /**
+     * Configuracao de criptografia da senha
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(employeeService).passwordEncoder(new BCryptPasswordEncoder());

@@ -1,5 +1,26 @@
-# Documentação da API em [Doc](./doc)
+# Configuração inicial
 
+* Configurar o banco de dados em ```/src/main/resources```
+
+* Gerar um usuário inicial para realizar o CRUD com autenticação.
+> A URI "/" permite cadastrar um funcinário e não está protegina gerar o primeiro usuário.
+
+> Caso prefira, um dump foi disponibilizado [aqui](./doc/db/dump). Todos os usuários possuem a senha 1234.
+
+O comando a seguir pode ser utilizado para cadastrar o primeiro funcionário.
+
+```
+curl -X POST -H "Content-Type: application/json" http://FQDN_OR_IP[:PORT]/ -d '{"name": "func1","email": "func1@vet.com", "password": "1234","role": "REOLE_VET"}'
+
+```
+
+# Documentação
+
+* [Documentação da API](./doc)
+
+* [Modelagem do banco de dados](./doc/db)
+
+---
 
 # Crud Spring Boot - Pet Schedule
 

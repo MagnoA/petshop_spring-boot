@@ -8,11 +8,14 @@ import com.sippulse.pet.repository.PetRepository;
 import com.sippulse.pet.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+/** Classe que implementa os Servicos Pet requisitados pelo controller
+ * @author Allex Magno
+ * @version 1.0
+ */
 
 @Service
 public class PetServiceImpl implements PetService{
@@ -27,6 +30,11 @@ public class PetServiceImpl implements PetService{
     @Autowired
     private ClientRepository clientRepository;
 
+    /**
+     * Metodo que registra um pet no banco de dados
+     * @param client
+     * @return List<Pet>
+     */
     @Override
     public List<Pet> addPet(Client client) {
         Client clientPet = clientRepository.findByCpf(client.getCpf());
@@ -42,26 +50,31 @@ public class PetServiceImpl implements PetService{
         return petList;
     }
 
+    /**
+     * Metodo que busca todos os pets registrados no banco de dados
+     * @return List<Pet>
+     */
     @Override
     public List<Pet> listPet() {
         return petRepository.findAll();
     }
 
+    /**
+     * Metodo que busca um pet no banco de dados pelo ID
+     * @param id
+     * @return Pet
+     */
     @Override
     public Pet showPet(Long id) {
         return petRepository.findById(id);
     }
 
-    @Override
-    public List<Pet> listPetByClient(String cpf) {
-        return null;
-    }
 
-    @Override
-    public List<Pet> listPetByEmployee(String email) {
-        return null;
-    }
-
+    /**
+     * Metodo que atualiza um pet no banco de dados pelo CPF do dono
+     * @param client
+     * @return List<Pet>
+     */
     @Override
     public List<Pet> updatePet(Client client) {
         Iterator<Pet> petIterator = client.getPets().iterator();
@@ -88,6 +101,11 @@ public class PetServiceImpl implements PetService{
         return petList;
     }
 
+    /**
+     * Metodo que atualiza um pet no banco de dados pelo ID
+     * @param pet
+     * @return Pet
+     */
     @Override
     public Pet updatePet(Pet pet) {
 
@@ -104,6 +122,10 @@ public class PetServiceImpl implements PetService{
         return petRepository.save(petToUpdate);
     }
 
+    /**
+     * Metodo que remove um pet no banco de dados pelo ID e CPF do dono
+     * @param client
+     */
     @Override
     public void detelePet(Client client) {
         Iterator<Pet> pets = client.getPets().iterator();

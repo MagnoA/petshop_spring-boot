@@ -17,6 +17,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+/** Classe que implementa os Servicos de Funcionarios requisitados pelo controller
+ * @author Allex Magno
+ * @version 1.0
+ */
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -26,6 +31,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    /**
+     * Metodo para possibilitar a autenticacao do funcionario
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Employee employee = Optional.ofNullable(employeeRepository.findByEmail(email))
@@ -34,6 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new User(employee.getName(), employee.getPassword(), authoritiesListEmployee);
     }
 
+    /**
+     * Metodo para adicionar um funcionario no banco de dados
+     * @param employee
+     * @return
+     */
     @Override
     public Employee addEmployee(Employee employee) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -41,28 +57,41 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    /**
+     * Metodo para buscar todos os funcionarios no banco de dados
+     * @return List<Employee>
+     */
     @Override
     public List<Employee> listEmployee() {
         return employeeRepository.findAll();
     }
 
+    /**
+     * Metodo para buscar um funcionario no banco de dados pelo ID
+     * @return Employee
+     */
     @Override
     public Employee showEmployee(Long id) {
         return employeeRepository.findById(id);
     }
 
+    /**
+     * Metodo para buscar um funcionario no banco de dados pelo CPF
+     * @return Employee
+     */
     @Override
     public Employee showEmployee(String email) {
         return employeeRepository.findByEmail(email);
     }
 
+    /**
+     * Metodo para atualiza um funcionario no banco de dados
+     * @return Employee
+     */
     @Override
     public Employee updateEmployee(Employee employee) {
 
         Employee employeeToUpdate = employeeRepository.findByEmail(employee.getEmail());
-
-        if(employee.getEmail() != null)
-            employeeToUpdate.setEmail(employee.getEmail());
 
         if(employee.getName() != null)
             employeeToUpdate.setName(employee.getName());
@@ -78,6 +107,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employeeToUpdate);
     }
 
+    /**
+     * Metodo para apagar um funcionario no banco de dados
+     */
     @Override
     public void deteleEmployeeById(Long id) {
         Iterator<Schedule> scheduleIterator = scheduleRepository.findByEmployee_Id(id).iterator();

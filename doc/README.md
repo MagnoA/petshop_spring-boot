@@ -1,5 +1,7 @@
 # Documentação da API
 
+Para informacoes a docuementação relacionada ao banco de dados, [clique aqui](./db).
+
 ## Sumário 
 [1 - Consulta de Agendamentos](#topico1) \
 [2 - Gerenciamento de Clientes](#topico2) \

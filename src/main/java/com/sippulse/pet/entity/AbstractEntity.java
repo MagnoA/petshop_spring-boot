@@ -7,6 +7,9 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe abstrata que contem as informacoes basicas de todas as entidades
+ */
 @MappedSuperclass
 public class AbstractEntity implements Serializable {
 

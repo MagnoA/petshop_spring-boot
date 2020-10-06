@@ -53,10 +53,10 @@ O schedule mantém as informações de agendamentos das consultas feitas no pets
  * time - Hora e minuto de agendamento
  
  
- 
+** todos as entidades e relacionamentos que geraram tabelas possuem o atributo ID.** 
+
  ## Anexo 1
 Modelagem do bando de dados.
 
-![db_model](./images/db_model.png)
+![db_model](../images/db_model.png)
 
-\*Imagem para simples conferência

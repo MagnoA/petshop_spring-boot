@@ -2,13 +2,13 @@ package com.sippulse.pet.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Date;
+
+/**Classe DAO para o relacionamento SCHEDULE com metodos basicos como construtores, getters e setters;
+ * @author Allex Magno
+ * @version 1.0
+ */
 
 @Entity
 @Table(name = "tb_schedule")
@@ -24,9 +24,11 @@ public class Schedule extends AbstractEntity {
     @JoinColumn(name = "ID_PET", nullable = false)
     private Pet pet;
 
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
+    @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm")
     private Date time;
 
