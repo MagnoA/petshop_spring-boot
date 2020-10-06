@@ -5,9 +5,8 @@
 [2 - Gerenciamento de Clientes](#topico2) \
 [3 - Gerenciamento de Pets](#topico3) \
 [4 - Gerenciamento de Funcionários](#topico4) \
-[5 - Gerenciamento de Agenda](#topico5) \
+[5 - Gerenciamento de Agenda](#topico5) 
 
-A aplicação Pet Schedule é uma ferramenta de agendamento de consultas em Petshop.
 
 ## Endpoints
 
