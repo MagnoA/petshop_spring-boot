@@ -16,19 +16,9 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/date")
-    public ResponseEntity<?> listSchedules(@RequestBody Schedule schedule){
-        return new ResponseEntity<>(scheduleService.listScheduleByDate(schedule), HttpStatus.OK);
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/vet")
     public ResponseEntity<?> listSchedulesByVet(@RequestBody Employee employee) {
         return new ResponseEntity<>(scheduleService.listScheduleByEmployee(employee), HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/client")
-    public ResponseEntity<?> listSchedulesByVet(@RequestBody Client client) {
-        return new ResponseEntity<>(scheduleService.listScheduleByClient(client), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)

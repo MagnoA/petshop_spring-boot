@@ -72,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if(employee.getPassword() != null) {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+            employeeToUpdate.setPassword(passwordEncoder.encode(employee.getPassword()));
         }
 
         return employeeRepository.save(employeeToUpdate);
