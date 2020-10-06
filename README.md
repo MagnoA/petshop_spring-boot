@@ -3,7 +3,7 @@
 * Configurar o banco de dados em ```/src/main/resources```
 
 * Gerar um usuário inicial para realizar o CRUD com autenticação.
-> A URI "/" permite cadastrar um funcinário e não está protegina gerar o primeiro usuário.
+> A URI "/" permite cadastrar um funcinário e não está protegida.
 
 > Caso prefira, um dump foi disponibilizado [aqui](./doc/db/dump). Todos os usuários possuem a senha 1234.
 
