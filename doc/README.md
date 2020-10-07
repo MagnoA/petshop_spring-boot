@@ -13,7 +13,7 @@ Para informacoes a documentação relacionada ao banco de dados, [clique aqui](.
 ## Endpoints
 
 ### 1 - Consulta simples de Agendamentos <a name="topico1"></a>
-> As URIs a seguir necessitam de autenticação.
+> As URIs a seguir não necessitam de autenticação.
 
  * ``` /client ``` \
 **Metodo:** GET \
