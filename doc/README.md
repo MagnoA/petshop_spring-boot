@@ -1,6 +1,6 @@
 # Documentação da API
 
-Para informacoes a docuementação relacionada ao banco de dados, [clique aqui](./db).
+Para informacoes a documentação relacionada ao banco de dados, [clique aqui](./db).
 
 ## Sumário 
 [1 - Consulta de Agendamentos](#topico1) \
@@ -13,7 +13,7 @@ Para informacoes a docuementação relacionada ao banco de dados, [clique aqui](
 ## Endpoints
 
 ### 1 - Consulta simples de Agendamentos <a name="topico1"></a>
-> As seguintes URIs não necessitam de autenticação.
+> As URIs a seguir necessitam de autenticação.
 
  * ``` /client ``` \
 **Metodo:** GET \
@@ -38,10 +38,10 @@ curl -X GET -H "Content-Type: application/json" http://FQDN_OR_IP[:PORT]/date -d
 ```
 
 
-### Consultas e requisições do aplicação.
-> As seguintes URIs necessitam de autenticação
+---
+> As URIs a seguir necessitam de autenticação
 
-#### 2 - Gerenciamento de Clientes <a name="topico2"></a>
+### 2 - Gerenciamento de Clientes <a name="topico2"></a>
  * ``` /clients ``` \
 **Metodo:** GET \
 **Descrição:** Consulta todos os clientes. \
@@ -269,7 +269,7 @@ curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN
 
 ```
 
-#### 4 - Gerenciamento de Funcionários <a name="topico4"></a>
+### 4 - Gerenciamento de Funcionários <a name="topico4"></a>
 
 
  * ``` /employees ``` \
@@ -351,7 +351,7 @@ curl -X DELETE -H "Content-Type: application/json" -u email:password http://FQDN
 ```
 
 
-#### 5 - Gerenciamento de Agenda <a name="topico5"></a>
+### 5 - Gerenciamento de Agenda <a name="topico5"></a>
 
  * ``` /schedule/vet ``` \
 **Metodo:**  GET \
