@@ -284,7 +284,7 @@ curl -X GET -H "Content-Type: application/json" -u email:password http://FQDN_OR
 ```
 
 
- * ``` /employees/1 ``` \
+ * ``` /employees/{id} ``` \
 **Metodo:**  GET \
 **Descrição:**  Busca um funcionário pelo seu ID \
 **Condeúdo da Requisição:** \
